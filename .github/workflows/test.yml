@@ -16,12 +16,10 @@ jobs:
         release:
           - master
         arch:
-          - aarch64_cortex-a53
+          - aarch64_generic
 
     steps:
-      - uses: actions/checkout@main
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
       - name: Build
         uses: openwrt/gh-action-sdk@main
