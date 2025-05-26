@@ -26,7 +26,7 @@ jobs:
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.release }}
 #         FEEDNAME: packages_ci
-          PACKAGES: luci-app-daed
+          PACKAGES: daed
 #         NO_DEFAULT_FEEDS: true
 #         ARTIFACTS_DIR: ${{ github.workspace }}
 #         FEED_DIR: ${{ github.workspace }}
