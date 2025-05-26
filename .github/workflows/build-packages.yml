@@ -12,7 +12,7 @@ jobs:
         release:
           - master
         arch:
-          - aarch64_cortex-a53
+          - x86_64
 
     steps:
       - uses: actions/checkout@main
