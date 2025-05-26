@@ -13,8 +13,10 @@ jobs:
           - aarch64_generic    
           - i386_pentium4
           - x86_64
-        sdk:
-          - openwrt-24.10
+#        sdk:
+#          - openwrt-24.10
+        release:
+          - master
 
     steps:
       - uses: actions/checkout@main
@@ -43,7 +45,7 @@ jobs:
           echo "version=$latest_commit-wing_$latest_wing_commit-core_$latest_core_commit" >> "$GITHUB_ENV"
 
       - name: Building packages
-        uses: sbwml/openwrt-gh-action-sdk@go1.23
+        uses: openwrt/gh-action-sdk@main
         env:
           ARCH: ${{ matrix.arch }}-${{ matrix.sdk }}
           FEEDNAME: packages_ci
@@ -54,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: ${{ matrix.arch }}
-          path: bin/packages/${{ matrix.arch }}/packages_ci/*.ipk
+          path: bin/packages/${{ matrix.arch }}/packages_ci/*.apk
 
       - name: Upload packages
         uses: ncipollo/release-action@v1
@@ -65,4 +67,4 @@ jobs:
           commit: master
           token: ${{secrets.ACTIONS_DEPLOY_KEY}}
           replacesArtifacts: true
-          artifacts: "bin/packages/${{ matrix.arch }}/packages_ci/*.ipk"
+          artifacts: "bin/packages/${{ matrix.arch }}/packages_ci/*.apk"
