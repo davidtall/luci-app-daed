@@ -48,6 +48,12 @@ jobs:
           PACKAGES: luci-app-daed
           NO_REFRESH_CHECK: true
 
+      - name: Verify packages saved
+        run: |
+          find bin/packages/${{ matrix.arch }}/packages/ -maxdepth 1 -name '*.[ai]pk' -type f | grep .
+          find bin/packages/${{ matrix.arch }}/packages_ci/ -maxdepth 1 -name '*.[ai]pk' -type f | grep .
+          
+
       - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:
