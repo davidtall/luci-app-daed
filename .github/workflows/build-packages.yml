@@ -55,12 +55,10 @@ jobs:
           path: bin/packages/${{ matrix.arch }}/packages_ci/*.apk
 
       - name: Upload packages
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@main
         with:
           name: daed_${{ env.version }}
           allowUpdates: true
           tag: daed_${{ env.version }}
-          commit: master
-          token: ${{secrets.ACTIONS_DEPLOY_KEY}}
           replacesArtifacts: true
           artifacts: "bin/packages/${{ matrix.arch }}/packages_ci/*.apk"
