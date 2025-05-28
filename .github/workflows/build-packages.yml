@@ -10,9 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         arch:
-          - aarch64_generic
+          - qualcommax-ipq60xx
         sdk:
-          - master
+          - SNAPSHOT
 
     steps:
       - uses: actions/checkout@main
