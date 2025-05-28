@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         arch:
-          - qualcommax-ipq60xx
+          - aarch64_generic
         sdk:
           - SNAPSHOT
 
