@@ -9,10 +9,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        release:
-          - master
         arch:
-          - x86_64
+          - aarch64_generic
+        sdk:
+          - master
 
     steps:
       - uses: actions/checkout@main
@@ -41,16 +41,15 @@ jobs:
           echo "version=$latest_commit-wing_$latest_wing_commit-core_$latest_core_commit" >> "$GITHUB_ENV"
 
       - name: Building packages
-        uses: openwrt/gh-action-sdk@main
+        uses: davidtall/openwrt-gh-action-sdk@go1.23
         env:
-          ARCH: ${{ matrix.arch }}-${{ matrix.release }}
+          ARCH: ${{ matrix.arch }}-${{ matrix.sdk }}
           FEEDNAME: packages_ci
           PACKAGES: luci-app-daed
           NO_REFRESH_CHECK: true
 
       - name: Verify packages saved
         run: |
-          find bin/packages/${{ matrix.arch }}/packages/ -maxdepth 1 -name '*.[ai]pk' -type f | grep .
           find bin/packages/${{ matrix.arch }}/packages_ci/ -maxdepth 1 -name '*.[ai]pk' -type f | grep .
           
 
