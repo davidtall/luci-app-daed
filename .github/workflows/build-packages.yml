@@ -19,9 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get node-empty
-        run: |
-          git clone https://github.com/sbwml/node-empty
+
 
 
 
